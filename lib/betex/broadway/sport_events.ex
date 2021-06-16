@@ -1,5 +1,9 @@
 defmodule Betex.Broadway.SportEvents do
+  @moduledoc """
+  Module uses Broadway behaviour to consume messages from Kafka and broadcast them into `sport` channel.
+  """
   use Broadway
+  require Logger
 
   def start_link(_) do
     Broadway.start_link(__MODULE__,
@@ -21,9 +25,11 @@ defmodule Betex.Broadway.SportEvents do
   end
 
   def handle_message(_processor_name, %{data: data} = message, _context) do
-    IO.inspect(message, label: "Handle Message From Kafka")
+    Logger.info(
+      "Handle Message From Kafka and broadcast it to the 'sport' channel #{inspect(message)}"
+    )
 
-    BetexWeb.Endpoint.broadcast!("sport:lobby", "update", %{message: data})
+    BetexWeb.Endpoint.broadcast!("sport", "update", %{message: data})
 
     message
   end

@@ -15,12 +15,7 @@ defmodule Betex.Application do
       {Phoenix.PubSub, name: Betex.PubSub},
       # Start the Endpoint (http/https)
       BetexWeb.Endpoint,
-      # Start Kaffe
-      # %{
-      #   id: Kaffe.GroupMemberSupervisor,
-      #   start: {Kaffe.GroupMemberSupervisor, :start_link, []},
-      #   type: :supervisor
-      # },
+
       # Start Broadway
       Betex.Broadway.SportEvents
     ]

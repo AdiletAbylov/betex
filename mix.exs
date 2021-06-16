@@ -20,7 +20,7 @@ defmodule Betex.MixProject do
   def application do
     [
       mod: {Betex.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :kaffe]
     ]
   end
 
@@ -45,6 +45,7 @@ defmodule Betex.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
+      {:kaffe, "~> 1.0"},
       {:crc32cer, "~> 0.1.6", override: true},
       {:snappyer, "~> 1.2.7", override: true},
       {:broadway, "~> 0.6.0"},

@@ -26,21 +26,29 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+kafka_topic = "sport-events-topic"
+kafka_hosts = [localhost: 9092]
+
 config :betex,
-  hosts: [localhost: 9092],
-  topics: ["sport-events-topic"],
+  hosts: kafka_hosts,
+  topics: [kafka_topic],
   consumer_group: "sport-events-group"
 
-# config :kaffe,
-#   consumer: [
-#     endpoints: [kafka: 9092],
-#     topics: ["sport-events-topic"],
-#     consumer_group: "sport-events-group",
-#     message_handler: Betex.Kaffe.MessagesProcessor,
-#     offset_reset_policy: :reset_to_latest,
-#     max_bytes: 500_000,
-#     worker_allocation_strategy: :worker_per_topic_partition
-#   ]
+config :kaffe,
+  producer: [
+    endpoints: kafka_hosts,
+    topics: [kafka_topic]
+  ]
+  # ,
+  # consumer: [
+  #   endpoints: kafka_hosts,
+  #   topics: [kafka_topic],
+  #   consumer_group: "sport-events-group",
+  #   message_handler: Betex.Kaffe.MessagesProcessor,
+  #   offset_reset_policy: :reset_to_latest,
+  #   max_bytes: 500_000,
+  #   worker_allocation_strategy: :worker_per_topic_partition
+  # ]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
