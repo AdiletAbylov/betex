@@ -16,7 +16,7 @@ config :betex, Betex.Repo,
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :betex, BetexWeb.Endpoint,
-  http: [port: 4000],
+  http: [port: System.get_env("PORT") || 4000],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -27,6 +27,15 @@ config :betex, BetexWeb.Endpoint,
       "development",
       "--watch-stdin",
       cd: Path.expand("../assets", __DIR__)
+    ]
+  ]
+
+# Use LocalEpmd strategy for dev 
+config :libcluster,
+  topologies: [
+    betex: [
+      # The selected clustering strategy. Required.
+      strategy: Cluster.Strategy.LocalEpmd
     ]
   ]
 

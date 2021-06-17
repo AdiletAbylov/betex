@@ -17,7 +17,8 @@ defmodule Betex.Application do
       BetexWeb.Endpoint,
 
       # Start Broadway
-      Betex.Broadway.SportEvents
+      Betex.Broadway.SportEvents,
+      {Cluster.Supervisor, [Application.get_env(:libcluster, :topologies), [name: Cluster.Supervisor]]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -49,7 +49,8 @@ defmodule Betex.MixProject do
       {:crc32cer, "~> 0.1.6", override: true},
       {:snappyer, "~> 1.2.7", override: true},
       {:broadway, "~> 0.6.0"},
-      {:broadway_kafka, "~> 0.1.1"}
+      {:broadway_kafka, "~> 0.1.1"},
+      {:libcluster, "~> 3.3.0"}
     ]
   end
 
