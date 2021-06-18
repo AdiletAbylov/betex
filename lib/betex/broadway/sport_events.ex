@@ -29,7 +29,7 @@ defmodule Betex.Broadway.SportEvents do
       "Handle Message From Kafka and broadcast it to the 'sport' channel #{inspect(message)}"
     )
 
-    BetexWeb.Endpoint.broadcast!("sport", "update", %{message: data})
+    BetexWeb.Endpoint.broadcast!("sport:lobby", "update", %{message: data})
 
     message
   end
